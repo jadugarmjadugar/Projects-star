@@ -33,6 +33,7 @@ pipeline{
             }
             post {
                 always{
+                    junit 'target/sunfire-reports/*.xml'
                     jacoco execPattern: 'target/jacoco.exec'
                 }
             }

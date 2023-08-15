@@ -22,7 +22,7 @@ pipeline{
                 checkout([$class: 'GitSCM',
                 branches: [[name: 'main']],  
                 extensions: [[$class: 'CleanCheckout']],
-                userRemoteConfigs: [[url: 'https://github.com/jadugarmjadugar/Projects-star/tree/fdde04e47fc380605cb920f3e56a877abe4df479/star-agile-insurance-project.git']]])
+                userRemoteConfigs: [[url: 'https://github.com/jadugarmjadugar/Projects-star/star-agile-insurance-project.git']]])
             }
         }
          stage('build') {

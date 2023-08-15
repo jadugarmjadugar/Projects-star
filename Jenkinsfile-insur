@@ -52,22 +52,22 @@ pipeline{
                 sh 'docker push 831202177837.dkr.ecr.us-east-1.amazonaws.com/test-jenkins:latest'
             }
         }
-        stage('kubernetes deploy'){
-            steps{
-                    sh 'eksctl version'
-                    sh 'aws sts get-caller-identity'
-                    sh 'kubectl version --short --client'
-                    sh 'aws eks update-kubeconfig --region us-east-1 --name test-1'
+        //stage('kubernetes deploy'){
+            //steps{
+                    //sh 'eksctl version'
+                    //sh 'aws sts get-caller-identity'
+                    //sh 'kubectl version --short --client'
+                    //sh 'aws eks update-kubeconfig --region us-east-1 --name test-1'
                     //sh 'kubectl get svc'
-                    withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    //withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                             //sh ('aws eks update-kubeconfig --name <EKS_CLUSTER_NAME> --region <AWS_REGION>')
-                            sh 'aws sts get-caller-identity'
-                            sh 'kubectl get svc'
+                            //sh 'aws sts get-caller-identity'
+                            //sh 'kubectl get svc'
                             //sh 'kubectl run insuranceproject-pod --image=jadugarmjadugar/insuranceproject:1.0'
-                            sh 'kubectl get pods'    
-                }
-            }
-        }   
+                            //sh 'kubectl get pods'    
+                //}
+            //}
+        //}   
     }
 
 }

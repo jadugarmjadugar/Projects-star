@@ -16,7 +16,7 @@ pipeline{
             steps {
                 cleanWs()
             }
-        }https://github.com/jadugarmjadugar/Projects-star/tree/fdde04e47fc380605cb920f3e56a877abe4df479/star-agile-insurance-project
+        }
         stage('Checkout stage'){
             steps{
                 checkout([$class: 'GitSCM',

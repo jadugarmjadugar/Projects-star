@@ -4,6 +4,7 @@ pipeline{
         maven 'maven'
     }
     options {
+        dir('/star-agile-insurance-project')
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
     }
     environment {
@@ -27,8 +28,6 @@ pipeline{
         }
          stage('build') {
             steps {
-                sh 'cd star-agile-insurance-project'
-                sh 'mvn clean build'
                 sh 'mvn clean package'
             }
         }

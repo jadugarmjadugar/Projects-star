@@ -34,8 +34,7 @@ pipeline{
             }
             post {
                 always{
-                    sh 'mvn jacoco:report'
-                    //junit 'target/sunfire-reports/*.xml'
+                    junit 'target/sunfire-reports/*.xml'
                     jacoco execPattern: 'target/jacoco.exec'
                 }
             }

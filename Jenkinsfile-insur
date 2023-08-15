@@ -16,13 +16,13 @@ pipeline{
             steps {
                 cleanWs()
             }
-        }
+        }https://github.com/jadugarmjadugar/Projects-star/tree/fdde04e47fc380605cb920f3e56a877abe4df479/star-agile-insurance-project
         stage('Checkout stage'){
             steps{
                 checkout([$class: 'GitSCM',
-                branches: [[name: 'master']],  
+                branches: [[name: 'main']],  
                 extensions: [[$class: 'CleanCheckout']],
-                userRemoteConfigs: [[url: 'https://github.com/StarAgileDevOpsTraining/star-agile-insurance-project.git']]])
+                userRemoteConfigs: [[url: 'https://github.com/jadugarmjadugar/Projects-star/tree/fdde04e47fc380605cb920f3e56a877abe4df479/star-agile-insurance-project.git']]])
             }
         }
          stage('build') {

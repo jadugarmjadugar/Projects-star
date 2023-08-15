@@ -28,7 +28,6 @@ pipeline{
          stage('build') {
             steps {
                 dir('star-agile-insurance-project'){
-                    sh 'ls'
                     sh 'mvn clean package'
                 }
             }
@@ -36,13 +35,17 @@ pipeline{
         
         stage('docker'){
             steps{
-                sh 'docker build -t jadugarmjadugar/insuranceproject:1.0 .'
+                dir('star-agile-insurance-project'){
+                    sh 'docker build -t jadugarmjadugar/insuranceproject:1.0 .'
+                }
             }
         }
         stage('docker push'){
             steps{
+                dir('star-agile-insurance-project'){
                     sh 'echo $dockerhub_cred_PSW | docker login -u $dockerhub_cred_USR --password-stdin'
                     sh 'docker push jadugarmjadugar/insuranceproject:1.0'
+                }
             }
         }
     }

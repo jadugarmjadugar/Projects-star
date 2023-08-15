@@ -29,6 +29,7 @@ pipeline{
             steps {
                 dir('star-agile-insurance-project'){
                     sh 'mvn clean package'
+                    archive 'target/*.jar'
                 }
             }
             post {

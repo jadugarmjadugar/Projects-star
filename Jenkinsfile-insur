@@ -4,7 +4,6 @@ pipeline{
         maven 'maven'
     }
     options {
-        dir('/star-agile-insurance-project')
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
     }
     environment {

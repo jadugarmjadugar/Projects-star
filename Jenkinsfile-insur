@@ -6,11 +6,11 @@ pipeline{
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
     }
-    environment{
-        dockerhub_cred = credentials('dockerhub-cred')
+    //environment{
+        //dockerhub_cred = credentials('dockerhub-cred')
         //aws_cred = credentials('aws-ID')
 
-    }
+    //}
     stages{
         stage('Cleanup') {
             steps {

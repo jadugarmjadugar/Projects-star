@@ -22,11 +22,12 @@ pipeline{
                 checkout([$class: 'GitSCM',
                 branches: [[name: 'main']],  
                 extensions: [[$class: 'CleanCheckout']],
-                userRemoteConfigs: [[url: 'https://github.com/jadugarmjadugar/Projects-star/star-agile-insurance-project.git']]])
+                userRemoteConfigs: [[url: 'https://github.com/jadugarmjadugar/Projects-star.git']]])
             }
         }
          stage('build') {
             steps {
+                sh 'cd star-agile-insurance-project'
                 sh 'mvn clean package'
             }
         }

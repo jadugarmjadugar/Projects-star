@@ -32,12 +32,15 @@ pipeline{
                     archiveArtifacts 'target/*.jar'
                 }
             }
-            post {
-                always{
-                    junit 'target/sunfire-reports/*.xml'
-                    jacoco execPattern: 'target/jacoco.exec'
+                post {
+                    success {
+                        jacoco(
+                            execPattern: '**/build/jacoco/*.exec',
+                            classPattern: '**/build/classes/java/main',
+                            sourcePattern: '**/src/main'
+                        )
+                    }
                 }
-            }
         }
         
         stage('docker'){

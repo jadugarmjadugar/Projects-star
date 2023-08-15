@@ -42,32 +42,6 @@ pipeline{
                     sh 'docker push jadugarmjadugar/insuranceproject:1.0'
             }
         }
-        stage('ecr push'){
-            steps{
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 831202177837.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'docker build -t test-jenkins:$BUILD_NUMBER .'
-                sh 'docker tag test-jenkins:$BUILD_NUMBER 831202177837.dkr.ecr.us-east-1.amazonaws.com/test-jenkins:$BUILD_NUMBER'
-                sh 'docker push 831202177837.dkr.ecr.us-east-1.amazonaws.com/test-jenkins:$BUILD_NUMBER'
-                sh 'docker tag test-jenkins:latest 831202177837.dkr.ecr.us-east-1.amazonaws.com/test-jenkins:latest'
-                sh 'docker push 831202177837.dkr.ecr.us-east-1.amazonaws.com/test-jenkins:latest'
-            }
-        }
-        //stage('kubernetes deploy'){
-            //steps{
-                    //sh 'eksctl version'
-                    //sh 'aws sts get-caller-identity'
-                    //sh 'kubectl version --short --client'
-                    //sh 'aws eks update-kubeconfig --region us-east-1 --name test-1'
-                    //sh 'kubectl get svc'
-                    //withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                            //sh ('aws eks update-kubeconfig --name <EKS_CLUSTER_NAME> --region <AWS_REGION>')
-                            //sh 'aws sts get-caller-identity'
-                            //sh 'kubectl get svc'
-                            //sh 'kubectl run insuranceproject-pod --image=jadugarmjadugar/insuranceproject:1.0'
-                            //sh 'kubectl get pods'    
-                //}
-            //}
-        //}   
     }
 
 }

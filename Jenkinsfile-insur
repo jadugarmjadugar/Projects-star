@@ -31,7 +31,7 @@ pipeline{
                     sh 'mvn clean package'
                     sh 'mvn jacoco:report'
                     archiveArtifacts 'target/*.jar'
-                    publishHTML (target: [reportDir: 'build/reports/jacoco/test/html', reportFiles: 'index.html',reportName: "JaCoCo Report"]) 
+                   // publishHTML (target: [reportDir: 'build/reports/jacoco/test/html', reportFiles: 'index.html',reportName: "JaCoCo Report"]) 
                 }
             }
                 post {

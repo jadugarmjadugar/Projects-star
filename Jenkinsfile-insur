@@ -29,6 +29,7 @@ pipeline{
             steps {
                 dir('star-agile-insurance-project'){
                     sh 'mvn clean package'
+                    sh 'mvn jacoco:report'
                     archiveArtifacts 'target/*.jar'
                 }
             }

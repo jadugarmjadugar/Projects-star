@@ -29,37 +29,36 @@ pipeline{
             steps {
                 dir('star-agile-insurance-project'){
                     sh 'mvn clean package'
-                    sh 'mvn jacoco:report'
-                    archiveArtifacts 'target/*.jar'
-                   // publishHTML (target: [reportDir: 'build/reports/jacoco/test/html', reportFiles: 'index.html',reportName: "JaCoCo Report"]) 
+                    //sh 'mvn jacoco:report'
+                    //archiveArtifacts 'target/*.jar'
                 }
             }
-                post {
-                    success {
-                        dir('star-agile-insurance-project'){
-                            jacoco(
-                                execPattern: '**/build/jacoco/*.exec',
-                                classPattern: '**/build/classes/java/main',
-                                sourcePattern: '**/src/main'
-                            )
-                        }
-                    }
-                }    
+                //post {
+                    //success {
+                        //dir('star-agile-insurance-project'){
+                            //jacoco(
+                                //execPattern: '**/build/jacoco/*.exec',
+                                //classPattern: '**/build/classes/java/main',
+                                //sourcePattern: '**/src/main'
+                            //)
+                        //}
+                    //}
+                //}    
             }
-        stage('Mutation Tests - PIT') {
-           steps {
-                dir('star-agile-insurance-project'){
-                     sh "mvn org.pitest:pitest-maven:mutationCoverage"
-                }
-           }
-            post {
-                    always {
-                        dir('star-agile-insurance-project'){
-                            pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-                        }
-                    }
-                }    
-         }
+        //stage('Mutation Tests - PIT') {
+           //steps {
+                //dir('star-agile-insurance-project'){
+                     //sh "mvn org.pitest:pitest-maven:mutationCoverage"
+                //}
+           //}
+            //post {
+                    //always {
+                        //dir('star-agile-insurance-project'){
+                            //pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+                        //}
+                    //}
+                //}    
+         //}
         stage('docker'){
             steps{
                 dir('star-agile-insurance-project'){

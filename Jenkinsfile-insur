@@ -59,6 +59,23 @@ pipeline{
                    // }
                // }    
         // } 
+            stage('Vulnerability Scan - Docker') {
+               steps {
+                 dir('star-agile-insurance-project'){
+         	        "Dependency Scan": {
+         		        sh "mvn dependency-check:check"
+	 		        }
+                }
+             }
+            post {
+                    always {
+                        dir('star-agile-insurance-project'){
+                            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                        }
+                    }
+                }    
+             } 
+    
         stage('docker'){
             steps{
                 dir('star-agile-insurance-project'){

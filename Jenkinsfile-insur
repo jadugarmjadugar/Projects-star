@@ -34,32 +34,32 @@ pipeline{
                 }
             }
         }
-                /* post {
-                    * success {
-                       * dir('star-agile-insurance-project'){
-                           * jacoco(
-                             *   execPattern: '**/build/jacoco/*.exec',
-                              *  classPattern: '**/build/classes/java/main',
-                              *  sourcePattern: '**/src/main'
-                           * )
-                       * }
-                   * }
-               * }     
-           * }
-        * stage('Mutation Tests - PIT') {
-          * steps {
-               * dir('star-agile-insurance-project'){
-                    * sh "mvn org.pitest:pitest-maven:mutationCoverage"
-                * }
-         *  }
-          *  post {
-                  *  always {
-                      *  dir('star-agile-insurance-project'){
-                         *   pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-                       * }
-                   * }
-               * }    
-        * } */
+                //post {
+                    // success {
+                        // dir('star-agile-insurance-project'){
+                           // jacoco(
+                             //   execPattern: '**/build/jacoco/*.exec',
+                              //  classPattern: '**/build/classes/java/main',
+                              //  sourcePattern: '**/src/main'
+                           // )
+                       // }
+                   // }
+               // }     
+           // }
+        // stage('Mutation Tests - PIT') {
+          // steps {
+               // dir('star-agile-insurance-project'){
+                    // sh "mvn org.pitest:pitest-maven:mutationCoverage"
+                // }
+         //  }
+         //  post {
+                  //  always {
+                      //  dir('star-agile-insurance-project'){
+                         //   pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+                       // }
+                   // }
+               // }    
+        // } 
         stage('docker'){
             steps{
                 dir('star-agile-insurance-project'){

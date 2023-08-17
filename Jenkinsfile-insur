@@ -32,6 +32,13 @@ pipeline{
                 }
             }  
         }
+        stage('trivy') {
+               steps {
+                 dir('star-agile-insurance-project'){ 
+         		    sh "bash trivy-docker-image-scan.sh"
+                }
+             }    
+        } 
         stage('docker'){
             steps{
                 dir('star-agile-insurance-project'){

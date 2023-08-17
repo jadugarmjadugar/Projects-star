@@ -30,7 +30,7 @@ pipeline{
                 dir('star-agile-insurance-project'){
                     sh 'mvn clean package'
                     //sh 'mvn jacoco:report'
-                    //archiveArtifacts "target/*.jar"
+                    //archiveArtifacts 'target/*.jar'
                 }
             }
         }
@@ -38,9 +38,9 @@ pipeline{
                     success {
                         dir('star-agile-insurance-project'){
                             jacoco(
-                                execPattern: '**/build/jacoco/*.exec',
-                                classPattern: '**/build/classes/java/main',
-                                sourcePattern: '**/src/main'
+                                //execPattern: '**/build/jacoco/*.exec',
+                                //classPattern: '**/build/classes/java/main',
+                                //sourcePattern: '**/src/main'
                             )
                         }
                     }
@@ -55,7 +55,7 @@ pipeline{
             post {
                     always {
                         dir('star-agile-insurance-project'){
-                            pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+                            //pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
                         }
                     }
                 }    

@@ -61,10 +61,8 @@ pipeline{
         // } 
             stage('Vulnerability Scan - Docker') {
                steps {
-                 dir('star-agile-insurance-project'){
-         	        "Dependency Scan": {
-         		        sh "mvn dependency-check:check"
-	 		        }
+                 dir('star-agile-insurance-project'){ 
+         		sh "mvn dependency-check:check"
                 }
              }
             post {

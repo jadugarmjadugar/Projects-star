@@ -33,6 +33,7 @@ pipeline{
                     //archiveArtifacts 'target/*.jar'
                 }
             }
+        }
                 /* post {
                     success {
                         dir('star-agile-insurance-project'){
@@ -43,8 +44,8 @@ pipeline{
                             )
                         }
                     }
-                } */    
-            }
+                }     
+            } */
         /* stage('Mutation Tests - PIT') {
            steps {
                 dir('star-agile-insurance-project'){

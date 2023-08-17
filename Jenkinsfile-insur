@@ -48,7 +48,9 @@ pipeline{
             }
         stage('Mutation Tests - PIT') {
            steps {
-             sh "mvn org.pitest:pitest-maven:mutationCoverage"
+                dir('star-agile-insurance-project'){
+                     sh "mvn org.pitest:pitest-maven:mutationCoverage"
+                }
            }
             post {
                     always {

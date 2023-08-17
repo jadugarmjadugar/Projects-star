@@ -45,8 +45,8 @@ pipeline{
                         }
                     }
                 }     
-            } */
-        /* stage('Mutation Tests - PIT') {
+            }
+         stage('Mutation Tests - PIT') {
            steps {
                 dir('star-agile-insurance-project'){
                      sh "mvn org.pitest:pitest-maven:mutationCoverage"

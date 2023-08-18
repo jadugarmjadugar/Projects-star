@@ -45,7 +45,6 @@ pipeline{
 	 		        }}  
                 )
            }
-        }
     }
         stage('docker'){
             steps{

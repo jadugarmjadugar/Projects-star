@@ -32,20 +32,6 @@ pipeline{
                 }
             }  
         }
-	 stage('Vulnerability Scan - Docker') {
-         steps {
-                 parallel(	
-     		        "Trivy Scan":{
-				dir('star-agile-insurance-project'){
-	 			        sh 'echo "hello"'
-	 		        }},
-	 		        "OPA Conftest":{
-					dir('star-agile-insurance-project'){
-	 			        sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-docker-security.rego Dockerfile'
-	 		        }}  
-                )
-           }
-    }
         stage('docker'){
             steps{
                 dir('star-agile-insurance-project'){

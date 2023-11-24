@@ -16,16 +16,16 @@ pipeline{
                 checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/StarAgileDevOpsTraining/star-agile-banking-finance.git']])
             }
         }
-        //stage("docker build"){
-            //steps{
-                //script{
-                    //dir("deploy/docker-compose"){  
-                        //sh "docker-compose -v"
-                        //sh "docker-compose -f docker-compose.yml up -d"
-                    //}    
-                //}
-            //}
-        //}
+        /*stage("docker build"){
+            steps{
+                script{
+                    dir("deploy/docker-compose"){  
+                        sh "docker-compose -v"
+                        sh "docker-compose -f docker-compose.yml up -d"
+                    }    
+                }
+            }
+        }*/
         stage('maven build'){
             steps{
                 sh 'mvn clean package'
@@ -57,9 +57,9 @@ pipeline{
             }
         }
     }
-    //post {
-        //failure {
-            //sh "docker-compose -f deploy/docker-compose/docker-compose.yml down"
-        //}
-    //}
+    /*post {
+        failure {
+            sh "docker-compose -f deploy/docker-compose/docker-compose.yml down"
+        }
+    }*/
 }

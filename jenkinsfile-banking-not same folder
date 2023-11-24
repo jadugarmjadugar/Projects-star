@@ -1,0 +1,65 @@
+pipeline{
+    agent any
+    tools{
+        maven 'Maven'
+    }
+    options {
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
+    }
+    environment{
+        cred = credentials('aws-cred-karan')
+    }
+    stages{
+        stage("checkout"){
+            steps{
+                //checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/microservices-demo/microservices-demo.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/StarAgileDevOpsTraining/star-agile-banking-finance.git']])
+            }
+        }
+        //stage("docker build"){
+            //steps{
+                //script{
+                    //dir("deploy/docker-compose"){  
+                        //sh "docker-compose -v"
+                        //sh "docker-compose -f docker-compose.yml up -d"
+                    //}    
+                //}
+            //}
+        //}
+        stage('maven build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage("docker build"){
+            steps{
+                script{
+                    sh "docker build -t 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:${BUILD_NUMBER} ."
+                    echo "${BUILD_NUMBER}"
+                }
+            }
+        }    
+        /*stage('ecr push'){
+            steps{
+                script{
+                    sh'''
+                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 838757568831.dkr.ecr.us-east-1.amazonaws.com
+                    docker push 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:${BUILD_NUMBER}
+                    docker tag 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:${BUILD_NUMBER} 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:latest
+                    docker push 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:latest
+                    '''
+                }
+            }
+        }*/
+        stage('image run test in docker'){
+            steps{
+                sh ' docker run -d -p 81:8081 838757568831.dkr.ecr.us-east-1.amazonaws.com/testing:${BUILD_NUMBER}'
+            }
+        }
+    }
+    //post {
+        //failure {
+            //sh "docker-compose -f deploy/docker-compose/docker-compose.yml down"
+        //}
+    //}
+}
